@@ -1,0 +1,253 @@
+.quiz {
+  background-color: #7fc7fe;
+  -webkit-transition: background-color 1000ms linear;
+  -ms-transition: background-color 1000ms linear;
+  transition: background-color 1000ms linear;
+  overflow: hidden;
+  margin: 50px auto;
+}
+.quiz.backgroundC {
+  background-color: #00c91a;
+}
+.quiz.backgroundF {
+  background-color: rgb(243, 87, 87);
+}
+@font-face {
+  font-family: 'RobotoLtRegular';
+  src: url('chrome-extension://__MSG_@@extension_id__/fonts/Ubuntu-Medium.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'RobotoLtRegular';
+  src: url('chrome-extension://__MSG_@@extension_id__/fonts/Ubuntu-Bold.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+#container {
+  display: block;
+  position: relative;
+  height: auto;
+  width: 100%;
+  padding: 5%;
+}
+
+.questions {
+  font-family: 'Montserrat', sans-serif;
+  word-wrap: break-word;
+  text-align: center;
+  font-size: 2em;
+  color: #010048;
+  margin-right: 10%;
+  margin-bottom: 5%;
+}
+
+#container ul {
+  list-style: none;
+  padding: 0px;
+
+  /* overflow: auto; */
+}
+
+.list {
+  font-family: 'Montserrat', sans-serif;
+  color: #010048;
+  display: block;
+  position: relative;
+  float: left;
+  width: 100%;
+  height: auto;
+}
+
+.checkQuestion {
+  box-sizing: border-box;
+  appearance: none;
+  background-color: transparent;
+  border: 5px solid #010048;
+  border-radius: 0.6em;
+  color: #010048;
+  cursor: pointer;
+  display: flex;
+  align-self: center;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1;
+  margin-top: 0px;
+  margin-right: 25%;
+  margin-left: 25%;
+  margin-bottom: 20px;
+  padding: 1.2em 2.8em;
+  text-decoration: none;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  float: left;
+  position: relative;
+}
+
+.checkQuestion:hover,
+.checkQuestion:focus {
+  color: #d0efff;
+  outline: 0;
+}
+
+/* 010048 darkblue */
+.checkQuestion {
+  transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+}
+.checkQuestion:hover {
+  box-shadow: 0 0 40px 40px #010048 inset;
+}
+.checkQuestion.shake {
+  -webkit-animation: shake 150ms ease-in-out;
+  animation: shake 150ms ease-in-out;
+  -webkit-animation-iteration-count: 2;
+  animation-iteration-count: 2;
+  box-shadow: 0 0 40px 40px transparent inset;
+}
+/* rgb(216, 109, 109) */
+
+@-webkit-keyframes shake {
+  0% {
+    left: -10px;
+  }
+  50% {
+    left: 10px;
+  }
+  100% {
+    left: 0;
+  }
+}
+
+@keyframes shake {
+  0% {
+    left: -10px;
+  }
+  50% {
+    left: 10px;
+  }
+  100% {
+    left: 0;
+  }
+}
+
+/* #quiz {
+  background-color: #ad310b;
+  -webkit-transition: background-color 1000ms linear;
+  -ms-transition: background-color 1000ms linear;
+  transition: background-color 1000ms linear;
+} */
+/*  
+.checkQuestionDet {
+  float: left;
+  height: 50px;
+  margin: 50px auto;
+  border: 5px solid #010048;
+  border-radius: 10%;
+
+  color: #010048;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  transition: color 150ms ease-in-out;
+}
+.checkQuestionDet:after {
+  content: '';
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 100%;
+  background: greenyellow;
+  z-index: -1;
+  transition: width 150ms ease-in-out;
+}
+.checkQuestionDet:hover {
+  color: #010048;
+}
+.checkQuestionDet:hover:after {
+  width: 110%;
+} */
+.list input[type='radio'] {
+  position: absolute;
+  visibility: hidden;
+  padding: 10px 10px 30px 80px;
+  margin: 5px auto;
+}
+
+/* change   padding: 25px 25px 25px 80px;
+  margin: 5px auto; at the same time */
+.list .labels {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 1000;
+  color: #010048;
+  display: block;
+  position: relative;
+  font-weight: 300;
+  font-size: 1.5em;
+  padding: 10px 10px 30px 80px;
+  margin-right: 10%;
+  /*this is moves the text  */
+  height: auto;
+  z-index: 9;
+  cursor: pointer;
+  -webkit-transition: all 0.25s linear;
+  overflow: visible;
+  word-wrap: break-word;
+}
+
+.list :hover .labels {
+  color: #d0efff;
+}
+
+.list .check {
+  display: block;
+  position: absolute;
+  border: 5px solid #010048;
+  border-radius: 10%;
+  height: 25px;
+  width: 25px;
+  top: 10px;
+  left: 20px;
+  z-index: 5;
+  transition: border 0.25s linear;
+  -webkit-transition: border 0.25s linear;
+}
+
+.list:hover .check {
+  border: 5px solid #d0efff;
+}
+
+.list .check::before {
+  display: block;
+  position: absolute;
+  content: '';
+  border-radius: 100%;
+  height: 15px;
+  width: 15px;
+  top: 5px;
+  left: 5px;
+  margin: auto;
+  transition: background 0.25s linear;
+  -webkit-transition: background 0.25s linear;
+}
+
+input[type='radio']:checked ~ .check {
+  border: 5px solid #d0efff;
+}
+
+input[type='radio']:checked ~ .check::before {
+  background: #d0efff;
+}
+
+input[type='radio']:checked ~ label {
+  color: #d0efff;
+}
+
+/* Styles for alert... 
+*/

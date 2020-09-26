@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.js" integrity="sha512-/McISOEKVzVvgu12/1Hk8dSrbKBShnKn79/R50ysl5qWR1zgj347kOT8LJJvInxHDSPmiBG9vg5AhMx6rcELJg==" crossorigin="anonymous"></script> -->
+    <script type="text/javascript" src="/papaparse.min.js"></script>
+    <title>Addative Aggumentor</title>
+
+<!doctype html>
+<title>Example</title>
+<style>
+      body {
+        width: 40%;
+        height: 10%;
+      }
+#grid {
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: repeat(1, 1fr);
+  grid-gap: 10px;
+  max-height: 20px;
+}
+#grid > div {
+  background-color:  #7fc7fe;
+  color:#1D2368;;
+  font-size: 0.75em;
+  padding: 10px;
+}
+
+
+.colorText{
+  color:white;
+}
+form {
+  text-align: left;
+}
+
+#upload-csv {
+  position: absolute;
+  left: -9999px;
+  
+}
+button, a{
+  padding: 0.5em;
+  background-color:darkblue;
+  color: white;
+  font-weight: bold;
+}
+
+label[for="upload-csv"] {
+  padding: 0.5em;
+  display: inline-block;
+  background: #1524d0;
+  cursor: pointer;
+  width: 25%;
+  color: white;
+
+}
+label[for="upload-csv"]:hover {
+  background: #1D2368;
+}
+
+#filename {
+  padding: 0.5em;
+  float: left;
+  width: 55%;
+  white-space: nowrap;
+  overflow: visible;
+  background: #037cd8;
+  position: relative;
+  color: white;
+}
+input[type=file]{
+    width:90px;
+    color:transparent;
+}
+
+.loaded{
+  background: aquamarine;
+}
+#reset{
+  margin-bottom: 10px;
+}
+
+
+
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 15px;
+  border-radius: 5px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider:hover {
+  opacity: 1;
+}
+body{
+  text-align: center;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: darkblue;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #4CAF50;
+  cursor: pointer;
+}
+.setFreq{
+  width: 100%;
+  font-size: small;
+  margin: 0, 30px, 30px, 30px ;
+
+}
+p{
+  font-size: small;
+}
+</style>
+<div id="grid">
+  <div><h1>Addative Aggumentor</h1></div>
+  <a href="/template_quiz.csv" download="template_quiz.csv">
+    Download Template
+</a>
+
+    <div><h2 id="name">Load Your Quiz</h2></div>
+
+<div >
+
+     <input
+      type="file"
+      id="upload-csv"
+      name="ksjhf"
+      accept=".csv"
+      style="display: none"
+    
+    />
+    <label  id="btn-upload-csv" for="upload-csv">Browse</label>
+<span  id="filename">Upload Quiz</span>
+</div>  
+<div class="slidecontainer">
+  <input type="range" min="1" max="20" step ="5" value="2" class="slider" id="myRange">
+  <h2>Insert Approx Every <span id="demo"></span> Posts    </h2> 
+   <button class="setFreq">Set</button>
+</div>
+  <div><h2 >Score: <span id = "score"> 0</span></h3></div>
+   <button id="reset">CLEAR QUIZ</button>
+
+    <script type="text/javascript" src="popup_copy.js"></script>
+  </body>
+</html>
