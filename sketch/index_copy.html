@@ -60,6 +60,9 @@ label[for="upload-csv"]:hover {
   background: #1D2368;
 }
 
+.setFreq:hover {
+  background: #1D2368;
+}
 #filename {
   padding: 0.5em;
   float: left;
@@ -80,8 +83,12 @@ input[type=file]{
 }
 #reset{
   margin-bottom: 10px;
+  background-color:  #1524d0;;
 }
 
+#reset:hover{
+  background-color:#1D2368 ;
+}
 
 
 .slider {
@@ -124,10 +131,14 @@ body{
   width: 100%;
   font-size: small;
   margin: 0, 30px, 30px, 30px ;
+  background-color: #1524d0;
 
 }
 p{
   font-size: small;
+}
+.disable{
+  pointer-events: none;
 }
 </style>
 <div id="grid">
@@ -152,9 +163,11 @@ p{
 <span  id="filename">Upload Quiz</span>
 </div>  
 <div class="slidecontainer">
-  <input type="range" min="1" max="20" step ="5" value="2" class="slider" id="myRange">
-  <h2>Insert Approx Every <span id="demo"></span> Posts    </h2> 
-   <button class="setFreq">Set</button>
+        <h2>Frequency of Questions:</h2> 
+  <input type="range" min="1" max="21" step ="5" value="2" class="slider" id="myRange">
+      <h3 id="demo"> Very Often </h2> 
+
+   <button class="setFreq">CLick to Set</button>
 </div>
   <div><h2 >Score: <span id = "score"> 0</span></h3></div>
    <button id="reset">CLEAR QUIZ</button>

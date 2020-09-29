@@ -6,7 +6,7 @@
   "content_scripts": [
     {
       "matches": ["https://www.facebook.com/"],
-      "js": ["papaparse.min.js", "content8.js"],
+      "js": ["papaparse.min.js", "content7.js"],
       "css": ["css/mystyles.css"]
     }
   ],

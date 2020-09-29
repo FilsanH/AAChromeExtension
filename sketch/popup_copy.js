@@ -1,23 +1,30 @@
-
-
 //slider
 
 let slider = document.getElementById('myRange')
 let output = document.getElementById('demo')
-output.innerHTML = slider.value
 
 slider.oninput = function () {
-  output.innerHTML = this.value
+  if (this.value == 1) {
+    output.textContent = 'Very Often'
+  } else if (this.value == 11) {
+    output.textContent = 'Less Often'
+  } else if (this.value == 21) {
+    output.textContent = 'Not Very Often'
+  }
 }
 
 let setFreq = document.querySelector('.setFreq')
 setFreq.addEventListener('click', (e) => {
-  let sliderValue = e.target.parentNode.childNodes[1].value
+  let sliderValue = e.target.parentNode.childNodes[3].value
   console.log(sliderValue)
   chrome.storage.local.set({ frequency: sliderValue }, function () {
     // Notify that we saved.
     //also triggers a change in storage
     console.log('freqset')
+    //change view
+    slider.disabled = true
+    setFreq.disabled = true
+    setFreq.textContent = 'Frequency Set'
   })
 })
 
@@ -26,12 +33,16 @@ let file = document.getElementById('filename')
 let fileUpload = document.getElementById('upload-csv')
 let showName = document.getElementById('name')
 let quizScore = document.getElementById('score')
+let browse = document.getElementById('btn-upload-csv')
 fileUpload.addEventListener('change', () => {
   // reset storage
   chrome.storage.local.clear(function (obj) {
     console.log('cleared')
   })
-
+  // disable browse button
+  fileUpload.disabled = true
+  browse.classList.add('disable')
+  browse.textContent = 'Done'
   var theSplit = fileUpload.value.split('\\')
   let quizName = theSplit[theSplit.length - 1]
   file.innerHTML = quizName
@@ -39,10 +50,7 @@ fileUpload.addEventListener('change', () => {
   file.style.color = '#0492ff'
 
   showName.classList.add('colorText')
-  showName.innerText = `Refresh Page to Load Quiz `
-  setTimeout(function () {
-    showName.classList.remove('colorText')
-  }, 2000)
+  showName.innerText = `Refreshing Page to Load Quiz `
 
   Papa.parse(fileUpload.files[0], {
     download: true,
@@ -62,6 +70,19 @@ fileUpload.addEventListener('change', () => {
           })
         }
       })
+      console.log(quizQuestions)
+      //disable button to avoid glitch
+      // randomise the questions
+      const getShuffledArr = (arr) => {
+        const newArr = arr.slice()
+        for (let i = newArr.length - 1; i > 0; i--) {
+          const rand = Math.floor(Math.random() * (i + 1))
+          ;[newArr[i], newArr[rand]] = [newArr[rand], newArr[i]]
+        }
+        return newArr
+      }
+
+      quizQuestions = getShuffledArr(quizQuestions)
       console.log(quizQuestions)
       //set length varible
       chrome.storage.local.set(
@@ -91,21 +112,62 @@ fileUpload.addEventListener('change', () => {
       //   //send message to active tab
       //   chrome.tabs.sendMessage(tabs[0].id, { questions: message })
       // }
+
+      setTimeout(function () {
+        showName.classList.remove('colorText')
+        //refresh page
+        chrome.tabs.reload()
+        //refresh popup
+        window.close()
+      }, 2000)
     },
   })
 })
 
 resetDetails = function () {
   chrome.storage.local.get(
-    { score: 0, answeredQuestions: 0, quizLength: 0, fileLoaded: 'NULL' },
+    {
+      score: 0,
+      answeredQuestions: 0,
+      quizLength: 0,
+      fileLoaded: 'NULL',
+      frequency: 3,
+    },
     function (items) {
       if (!chrome.runtime.error) {
         console.log(items)
 
         if (items.fileLoaded != 'NULL') {
           showName.innerText = ` Current Quiz: ${items.fileLoaded}`
+          // disable browse button
+          fileUpload.disabled = true
+          browse.classList.add('disable')
+          browse.textContent = 'Done'
+          file.innerText = `${items.fileLoaded}`
+          file.style.background = 'white'
+          file.style.color = '#0492ff'
+
+          // for case when default frequncy taken
+          setFreq.classList.add('disable')
+          slider.disabled = true
+          setFreq.disabled = true
+          setFreq.textContent = 'Frequency Set'
+          // if (items.frequency == 1) {
+          //   output.textContent = 'Very Often'
+          // } else if (this.value == 11) {
+          //   output.textContent = 'Less Often'
+          // } else if (this.value == 21) {
+          //   output.textContent = 'Not Very Often'
+          // }
         } else {
           showName.innerText = 'Load Your Quiz'
+          fileUpload.disabled = false
+          browse.classList.remove('disable')
+          setFreq.classList.remove('disable')
+          slider.disabled = false
+          setFreq.disabled = false
+
+          setFreq.textContent = 'CLick to Set'
         }
         quizScore.innerText = `${items.score}/${items.quizLength}`
         // if (element.id === 'score') {
@@ -152,9 +214,11 @@ window.onload = function () {
     })
   })
 
-  setTimeout(function () {
-    window.close()
-  }, 20000)
+  //Automatically close popup
+
+  // setTimeout(function () {
+  //   window.close()
+  // }, 20000)
 }
 
 // because listener runs before page is loaded?
