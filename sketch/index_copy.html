@@ -103,7 +103,7 @@ input[type=file]{
   border-radius: 5px;
   background: #d3d3d3;
   outline: none;
-  opacity: 0.1;
+  opacity: 0.7;
   -webkit-transition: .2s;
   transition: opacity .2s;
   
@@ -156,9 +156,10 @@ p{
   height: 100vh;
   margin: 0;
   padding: 0;
-  width: 200%;
+  width: 50% !important;
   opacity: 1;
   z-index: 9999 !important;
+  overflow: visible;
 }
 
 #toggle {
@@ -182,6 +183,7 @@ label {
 
 }
 
+
 @-webkit-keyframes appear {
   0% {
     opacity: 0;
@@ -200,7 +202,13 @@ label {
 dialog {
   -webkit-animation: appear 350ms ease-in 1;
           animation: appear 350ms ease-in 1;
-  max-width: 500px;
+  max-width: 85%;
+}
+
+#link{
+background-color: white;
+color: black;
+font-size: smaller;
 }
 
 </style>
@@ -219,6 +227,7 @@ Instructions: <br>
 3.	Once uploaded your newsfeed should refresh automatically with your questions loaded.  <br>
 4.	Track your progress from the ‘Score’ below.  <br>
 5.	Click ‘Clear quiz’  to delete quiz.  <br>
+7.  Share your quiz at: <a href="https://drive.google.com/drive/folders/11eEplpU4op2hyGrXkqOJYJPOlestl2rM?usp=sharing" id = "link">AA_Quizzes</a>   <br>
 6.	Repeat to load new quiz.  <br>
   </p>
     
