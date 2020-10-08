@@ -1,3 +1,11 @@
+//help popup
+var popup = document.getElementById('myPopup')
+var popupp = document.getElementById('click')
+popupp.addEventListener('click', pop)
+function pop() {
+  console.log('here')
+  popupp.classList.toggle('show')
+}
 //slider
 
 let slider = document.getElementById('myRange')

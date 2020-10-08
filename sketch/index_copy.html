@@ -11,7 +11,7 @@
 <style>
       body {
         width: 40%;
-        height: 10%;
+        height: auto;
       }
 #grid {
   display: grid;
@@ -27,6 +27,11 @@
   padding: 10px;
 }
 
+#info{
+  width: 100% ;
+  height: 100%;
+
+}
 
 .colorText{
   color:white;
@@ -68,7 +73,7 @@ label[for="upload-csv"]:hover {
   float: left;
   width: 55%;
   white-space: nowrap;
-  overflow: visible;
+  overflow: hidden;
   background: #037cd8;
   position: relative;
   color: white;
@@ -98,9 +103,10 @@ input[type=file]{
   border-radius: 5px;
   background: #d3d3d3;
   outline: none;
-  opacity: 0.7;
+  opacity: 0.1;
   -webkit-transition: .2s;
   transition: opacity .2s;
+  
 }
 
 .slider:hover {
@@ -140,15 +146,101 @@ p{
 .disable{
   pointer-events: none;
 }
+.body {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+          justify-content: center;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  width: 200%;
+  opacity: 1;
+  z-index: 9999 !important;
+}
+
+#toggle {
+  visibility: hidden;
+  opacity: 0;
+  position: fixed;
+  z-index: 9999 !important;
+}
+
+#toggle:checked ~ dialog {
+  display: block;
+  z-index: 9999 !important;
+}
+
+label {
+    background-color: rgb(60, 0, 255);
+  font-size: 1em;
+  color: white;
+  padding: 0.5em 1em;
+  border-radius: 4px; 
+
+}
+
+@-webkit-keyframes appear {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(-10px);
+            transform: translateY(-10px);
+  }
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(-10px);
+            transform: translateY(-10px);
+  }
+}
+dialog {
+  -webkit-animation: appear 350ms ease-in 1;
+          animation: appear 350ms ease-in 1;
+  max-width: 500px;
+}
+
 </style>
 <div id="grid">
-  <div><h1>Additive Augmenter </h1></div>
+  <div class="popup">
+    <input type="checkbox" id="toggle">
+<label for="toggle">Help</label>
+
+<dialog >
+  <p>
+    
+Welcome to the Additive Augmenter!  <br>
+Instructions: <br>
+1.	Adjust the scale to select how often you want the questions to appear on your newsfeed.  <br>
+2.	Click ‘Browse’ to upload your quiz. Ensure the file is a CSV.  <br>
+3.	Once uploaded your newsfeed should refresh automatically with your questions loaded.  <br>
+4.	Track your progress from the ‘Score’ below.  <br>
+5.	Click ‘Clear quiz’  to delete quiz.  <br>
+6.	Repeat to load new quiz.  <br>
+  </p>
+    
+  
+  <label for="toggle">Close </label>
+</dialog>
+  </div>
+  
+  <div><h1>Additive Augmenter </h1>
+</div>
   <a href="/template_quiz.xlsx" download="template_quiz">
     Download Template
 </a>
 
     <div><h2 id="name">Load Your Quiz</h2></div>
+<div class="slidecontainer">
+        <h2>Frequency of Questions:</h2> 
+  <input type="range" min="1" max="21" step ="5" value="2" class="slider" id="myRange">
+      <h3 id="demo"> Very Often </h2> 
 
+   <button class="setFreq">CLick to Set</button>
+</div>
 <div >
 
      <input
@@ -162,13 +254,7 @@ p{
     <label  id="btn-upload-csv" for="upload-csv">Browse</label>
 <span  id="filename">Upload Quiz</span>
 </div>  
-<div class="slidecontainer">
-        <h2>Frequency of Questions:</h2> 
-  <input type="range" min="1" max="21" step ="5" value="2" class="slider" id="myRange">
-      <h3 id="demo"> Very Often </h2> 
 
-   <button class="setFreq">CLick to Set</button>
-</div>
   <div><h2 >Score: <span id = "score"> 0</span></h3></div>
    <button id="reset">CLEAR QUIZ</button>
 
