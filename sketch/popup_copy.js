@@ -1,11 +1,3 @@
-//help popup
-var popup = document.getElementById('myPopup')
-var popupp = document.getElementById('click')
-popupp.addEventListener('click', pop)
-function pop() {
-  console.log('here')
-  popupp.classList.toggle('show')
-}
 //slider
 
 let slider = document.getElementById('myRange')
@@ -43,6 +35,7 @@ let showName = document.getElementById('name')
 let quizScore = document.getElementById('score')
 let browse = document.getElementById('btn-upload-csv')
 fileUpload.addEventListener('change', () => {
+  console.log('here')
   // reset storage
   chrome.storage.local.clear(function (obj) {
     console.log('cleared')
