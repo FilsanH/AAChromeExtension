@@ -1,5 +1,5 @@
 //slider
-
+let sliderContainer = document.getElementById('sliderContainer')
 let slider = document.getElementById('myRange')
 let output = document.getElementById('demo')
 
@@ -11,24 +11,34 @@ slider.oninput = function () {
   } else if (this.value == 21) {
     output.textContent = 'Not Very Often'
   }
-}
-
-let setFreq = document.querySelector('.setFreq')
-setFreq.addEventListener('click', (e) => {
-  let sliderValue = e.target.parentNode.childNodes[3].value
-  console.log(sliderValue)
-  chrome.storage.local.set({ frequency: sliderValue }, function () {
+  // let sliderValue = e.target.parentNode.childNodes[3].value
+  // console.log(sliderValue)
+  chrome.storage.local.set({ frequency: this.value }, function () {
     // Notify that we saved.
     //also triggers a change in storage
     console.log('freqset')
     //change view
-    slider.disabled = true
-    setFreq.disabled = true
-    setFreq.textContent = 'Frequency Set'
+    // setFreq.disabled = true
   })
-})
+}
+
+// let setFreq = document.querySelector('.setFreq')
+// setFreq.addEventListener('click', (e) => {
+//   let sliderValue = e.target.parentNode.childNodes[3].value
+//   console.log(sliderValue)
+//   chrome.storage.local.set({ frequency: sliderValue }, function () {
+//     // Notify that we saved.
+//     //also triggers a change in storage
+//     console.log('freqset')
+//     //change view
+//     slider.disabled = true
+//     setFreq.disabled = true
+//     setFreq.textContent = 'Frequency Set'
+//   })
+// })
 
 let quizQuestions = []
+let fileHolder = document.getElementById('fileHolder')
 let file = document.getElementById('filename')
 let fileUpload = document.getElementById('upload-csv')
 let showName = document.getElementById('name')
@@ -43,12 +53,16 @@ fileUpload.addEventListener('change', () => {
   // disable browse button
   fileUpload.disabled = true
   browse.classList.add('disable')
-  browse.textContent = 'Done'
+  // browse.textContent = 'Done'
   var theSplit = fileUpload.value.split('\\')
   let quizName = theSplit[theSplit.length - 1]
   file.innerHTML = quizName
   file.style.background = 'white'
   file.style.color = '#0492ff'
+
+  //disable slider
+  // slider.disabled = true
+  // console.log(sliderContainer)
 
   showName.classList.add('colorText')
   showName.innerText = `Refreshing Page to Load Quiz `
@@ -143,16 +157,20 @@ resetDetails = function () {
           // disable browse button
           fileUpload.disabled = true
           browse.classList.add('disable')
-          browse.textContent = 'Done'
+          //remove useless stuff
+          sliderContainer.classList.add('disappear')
+          fileHolder.classList.add('disappear')
+
+          // browse.textContent = 'Done'
           file.innerText = `${items.fileLoaded}`
           file.style.background = 'white'
           file.style.color = '#0492ff'
 
           // for case when default frequncy taken
-          setFreq.classList.add('disable')
+          // setFreq.classList.add('disable')
           slider.disabled = true
-          setFreq.disabled = true
-          setFreq.textContent = 'Frequency Set'
+          // setFreq.disabled = true
+          // setFreq.textContent = 'Frequency Set'
           // if (items.frequency == 1) {
           //   output.textContent = 'Very Often'
           // } else if (this.value == 11) {
@@ -162,13 +180,16 @@ resetDetails = function () {
           // }
         } else {
           showName.innerText = 'Load Your Quiz'
+
           fileUpload.disabled = false
           browse.classList.remove('disable')
-          setFreq.classList.remove('disable')
+          sliderContainer.classList.remove('disappear')
+          fileHolder.classList.remove('disappear')
+          // setFreq.classList.remove('disable')
           slider.disabled = false
-          setFreq.disabled = false
+          // setFreq.disabled = false
 
-          setFreq.textContent = 'CLick to Set'
+          // setFreq.textContent = 'CLick to Set'
         }
         quizScore.innerText = `${items.score}/${items.quizLength}`
         // if (element.id === 'score') {

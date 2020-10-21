@@ -57,8 +57,10 @@ label[for="upload-csv"] {
   display: inline-block;
   background: #1524d0;
   cursor: pointer;
-  width: 25%;
+  width: 90%;
   color: white;
+  text-align: center;
+  font-size: small !important;
 
 }
 label[for="upload-csv"]:hover {
@@ -71,13 +73,15 @@ label[for="upload-csv"]:hover {
 #filename {
   padding: 0.5em;
   float: left;
-  width: 55%;
+  width: 80%;
   white-space: nowrap;
   overflow: hidden;
   background: #037cd8;
   position: relative;
   color: white;
 }
+
+
 input[type=file]{
     width:90px;
     color:transparent;
@@ -134,7 +138,6 @@ body{
 }
 .setFreq{
   width: 100%;
-  font-size: small;
   margin: 0, 30px, 30px, 30px ;
   background-color: #1524d0;
 
@@ -158,7 +161,6 @@ p{
   width: 50% !important;
   opacity: 1;
   z-index: 9999 !important;
-  overflow: visible;
 }
 
 #toggle {
@@ -172,11 +174,12 @@ p{
   display: block;
   top: 5%;
   z-index: 9999 !important;
+  height: 80%;
+  overflow: scroll;
 }
 
 label {
     background-color: rgb(60, 0, 255);
-  font-size: 1em;
   color: white;
   padding: 0.5em 1em;
   border-radius: 4px; 
@@ -211,6 +214,11 @@ color: black;
 font-size: smaller;
 }
 
+.disappear{
+  display: none;
+}
+
+
 </style>
 <div id="grid">
 
@@ -222,15 +230,15 @@ font-size: smaller;
 </a>
 
     <div><h2 id="name">Load Your Quiz</h2></div>
-<div class="slidecontainer">
+<div id="sliderContainer">
         <h2>Frequency of Questions:</h2> 
   <input type="range" min="1" max="21" step ="5" value="2" class="slider" id="myRange">
       <h3 id="demo"> Very Often </h2> 
 
-   <button class="setFreq">CLick to Set</button>
-</div>
-<div >
+   <!-- <button class="setFreq">CLick to Set</button> -->
+</div >
 
+<div id= "fileHolder">
      <input
       type="file"
       id="upload-csv"
@@ -239,15 +247,16 @@ font-size: smaller;
       style="display: none"
     
     />
-    <label  id="btn-upload-csv" for="upload-csv">Browse</label>
-<span  id="filename">Upload Quiz</span>
-</div>  
+    <label  id="btn-upload-csv" for="upload-csv"><span  id="filename">Upload Quiz</span>
+</label>
+</div>
 
-  <div><h2 >Score: <span id = "score"> 0</span></h3></div>
+
+  <div><h2 >Completed: <span id = "score"> 0</span></h3></div>
    <button id="reset">CLEAR QUIZ</button>
   <div class="popup">
     <input type="checkbox" id="toggle">
-<label for="toggle">Help</label>
+<label id = "help" for="toggle">Help</label>
 
 <dialog >
   <p>
