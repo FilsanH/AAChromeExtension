@@ -87,7 +87,6 @@ input[type=file]{
   background: aquamarine;
 }
 #reset{
-  margin-bottom: 10px;
   background-color:  #1524d0;;
 }
 
@@ -153,7 +152,7 @@ p{
           align-items: center;
   -webkit-box-pack: center;
           justify-content: center;
-  height: 100vh;
+  height: 110vh;
   margin: 0;
   padding: 0;
   width: 50% !important;
@@ -171,6 +170,7 @@ p{
 
 #toggle:checked ~ dialog {
   display: block;
+  top: 5%;
   z-index: 9999 !important;
 }
 
@@ -213,28 +213,7 @@ font-size: smaller;
 
 </style>
 <div id="grid">
-  <div class="popup">
-    <input type="checkbox" id="toggle">
-<label for="toggle">Help</label>
 
-<dialog >
-  <p>
-    
-Welcome to the Additive Augmenter!  <br>
-Instructions: <br>
-1.	Adjust the scale to select how often you want the questions to appear on your newsfeed.  <br>
-2.	Click ‘Browse’ to upload your quiz. Ensure the file is a CSV.  <br>
-3.	Once uploaded your newsfeed should refresh automatically with your questions loaded.  <br>
-4.	Track your progress from the ‘Score’ below.  <br>
-5.	Click ‘Clear quiz’  to delete quiz.  <br>
-7.  Share your quiz at: <a href="https://drive.google.com/drive/folders/11eEplpU4op2hyGrXkqOJYJPOlestl2rM?usp=sharing" id = "link">AA_Quizzes</a>   <br>
-6.	Repeat to load new quiz.  <br>
-  </p>
-    
-  
-  <label for="toggle">Close </label>
-</dialog>
-  </div>
   
   <div><h1>Additive Augmenter </h1>
 </div>
@@ -266,7 +245,28 @@ Instructions: <br>
 
   <div><h2 >Score: <span id = "score"> 0</span></h3></div>
    <button id="reset">CLEAR QUIZ</button>
+  <div class="popup">
+    <input type="checkbox" id="toggle">
+<label for="toggle">Help</label>
 
+<dialog >
+  <p>
+    
+Welcome to the Additive Augmenter!  <br>
+Instructions: <br>
+1.	Adjust the scale to select how often you want the questions to appear on your newsfeed.  <br>
+2.	Click ‘Browse’ to upload your quiz. Ensure the file is a CSV.  <br>
+3.	Once uploaded your newsfeed should refresh automatically with your questions loaded.  <br>
+4.	Track your progress from the ‘Score’ below.  <br>
+5.	Click ‘Clear quiz’  to delete quiz.  <br>
+7.  Share your quiz at: <a href="https://drive.google.com/drive/folders/11eEplpU4op2hyGrXkqOJYJPOlestl2rM?usp=sharing" id = "link">AA_Quizzes</a>   <br>
+6.	Repeat to load new quiz.  <br>
+  </p>
+    
+  
+  <label for="toggle">Close </label>
+</dialog>
+  </div>
     <script type="text/javascript" src="popup_copy.js"></script>
   </body>
 </html>
