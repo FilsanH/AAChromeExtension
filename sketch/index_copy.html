@@ -60,7 +60,9 @@ label[for="upload-csv"] {
   width: 90%;
   color: white;
   text-align: center;
-  font-size: small !important;
+  font-size: small;
+    font-weight: bold;
+
 
 }
 label[for="upload-csv"]:hover {
@@ -76,7 +78,7 @@ label[for="upload-csv"]:hover {
   width: 80%;
   white-space: nowrap;
   overflow: hidden;
-  background: #037cd8;
+  background: #1D2368;
   position: relative;
   color: white;
 }
@@ -218,6 +220,10 @@ font-size: smaller;
   display: none;
 }
 
+#help{
+margin-bottom: 10px;
+}
+
 
 </style>
 <div id="grid">
@@ -225,9 +231,14 @@ font-size: smaller;
   
   <div><h1>Additive Augmenter </h1>
 </div>
-  <a href="/template_quiz.xlsx" download="template_quiz">
+
+
+   <a href="https://drive.google.com/drive/folders/11eEplpU4op2hyGrXkqOJYJPOlestl2rM?usp=sharing" id="template1" >Find Quiz</a> 
+  <a href="/template_quiz.xlsx" id= "template2" download="template_quiz">
     Download Template
 </a>
+
+
 
     <div><h2 id="name">Load Your Quiz</h2></div>
 <div id="sliderContainer">

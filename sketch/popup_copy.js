@@ -38,6 +38,8 @@ slider.oninput = function () {
 // })
 
 let quizQuestions = []
+let template1 = document.querySelector('#template1')
+let template2 = document.querySelector('#template2')
 let fileHolder = document.getElementById('fileHolder')
 let file = document.getElementById('filename')
 let fileUpload = document.getElementById('upload-csv')
@@ -160,11 +162,13 @@ resetDetails = function () {
           //remove useless stuff
           sliderContainer.classList.add('disappear')
           fileHolder.classList.add('disappear')
+          template1.classList.add('disappear')
+          template2.classList.add('disappear')
 
           // browse.textContent = 'Done'
           file.innerText = `${items.fileLoaded}`
           file.style.background = 'white'
-          file.style.color = '#0492ff'
+          file.style.color = '#1D2368'
 
           // for case when default frequncy taken
           // setFreq.classList.add('disable')
@@ -185,6 +189,9 @@ resetDetails = function () {
           browse.classList.remove('disable')
           sliderContainer.classList.remove('disappear')
           fileHolder.classList.remove('disappear')
+          template1.classList.remove('disappear')
+          template2.classList.remove('disappear')
+
           // setFreq.classList.remove('disable')
           slider.disabled = false
           // setFreq.disabled = false
@@ -229,7 +236,7 @@ window.onload = function () {
     }
     chrome.storage.local.clear(function (obj) {
       resetDetails()
-      file.style.background = '#0492ff'
+      file.style.background = '#1D2368'
       file.style.color = 'white'
       file.innerText = 'Upload Quiz'
       console.log('cleared')
